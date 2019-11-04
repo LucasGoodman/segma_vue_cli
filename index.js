@@ -6,6 +6,7 @@ const ora = require('ora');
 const chalk = require('chalk');
 const path = require('path');
 const cheerio = require('cheerio')
+const figlet = require('figlet');
 
 const questions = [
 	// 项目/文件名
@@ -91,9 +92,9 @@ const downloadTemplate = function ({ projectName, version, forceLint, deploy, re
 	// 下载项目
 	download(`direct:${repository}`, projectName, function (err) {
 		if (err) {
-			spinner.fail('项目下载失败');
+			spinner.fail('Template download failed');
 		} else {
-			spinner.succeed('项目下载成功');
+			spinner.succeed('Template download succeeded');
 			editFile({ projectName, version, forceLint, deploy })
 		}
 	})
@@ -216,9 +217,17 @@ const editFile = function ({ projectName, version, forceLint, deploy }) {
 	}
 
 	Promise.all([editPackageJson(), editHtml(), deleteDockerConfig(), deleteNginxConfig()]).then(res => {
-		console.log('success', res)
+		figlet('Segma Team', function (err, data) {
+			if (err) {
+				console.log('Print fault...');
+				console.dir(err);
+				return;
+			}
+			console.log(data)
+			console.log('项目创建成功,尽情使用吧');
+		});
 	}).catch(err => {
-		console.log('error', err)
+		console.log('Project creation failed', err);
 	})
 
 };
