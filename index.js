@@ -7,6 +7,7 @@ const chalk = require('chalk');
 const path = require('path');
 const cheerio = require('cheerio')
 const figlet = require('figlet');
+const replaceStr = '西格马前端-模板项目';  // index.html中需要替换的title的值
 
 const questions = [
 	// 项目/文件名
@@ -16,10 +17,10 @@ const questions = [
 		message: 'projectName:', // 提示语
 		validate(val) {
 			if (!val) { // 验证一下输入是否正确
-				return '请输入项目/文件名';
+				return 'Please enter the project/file name';
 			}
 			if (fs.existsSync(val)) { // 判断文件是否存在
-				return '该目录下文件路径已存在';
+				return 'The file path already exists in this directory';
 			} else {
 				return true;
 			};
@@ -137,8 +138,7 @@ const editFile = function ({ projectName, version, forceLint, deploy }) {
 		return new Promise((resolve, reject) => {
 			fs.readFile(`${process.cwd()}/${projectName}/public/index.html`, (err, data) => {
 				if (err) reject(err);
-				let _data = data.toString()
-				let replaceStr = '西格马前端-模板项目'
+				let _data = data.toString();
 				let str = _data.replace(replaceStr, `西格马-${projectName}`)
 				// 写入文件
 				fs.writeFile(`${process.cwd()}/${projectName}/public/index.html`, str, function (err) {
@@ -219,7 +219,7 @@ const editFile = function ({ projectName, version, forceLint, deploy }) {
 	Promise.all([editPackageJson(), editHtml(), deleteDockerConfig(), deleteNginxConfig()]).then(res => {
 		figlet('Segma Team', function (err, data) {
 			if (err) {
-				console.log('Print fault...');
+				console.log('Print fail...');
 				console.dir(err);
 				return;
 			}
