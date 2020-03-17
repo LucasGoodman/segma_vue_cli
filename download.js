@@ -6,7 +6,7 @@ const path = require('path');
 const fs = require('fs');
 const download = (gitPath = 'https://gitee.com/realucas/vue_template.git', fileName = 'template') => {
     return new Promise((resolve, reject) => {
-        exec(`git clone ${gitPath} ${fileName}`, { cwd: process.cwd() }, (err, stdout, stderr) => {
+        exec(`git clone ${gitPath} ${fileName} -b master --depth 1`, { cwd: process.cwd() }, (err, stdout, stderr) => {
             console.log('err', err)
             if (err) {
                 resolve(false)
