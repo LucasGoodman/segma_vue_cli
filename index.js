@@ -235,6 +235,8 @@ const editFile = function({ projectName, version, forceLint, deploy }) {
                 console.dir(err);
                 return;
             }
+            // 输出团队标识
+            console.log(data)
             console.log('项目创建成功,尽情使用吧');
             process.exit();
         });

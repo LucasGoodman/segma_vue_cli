@@ -1,6 +1,6 @@
 {
     "name": "segma-vue-cli",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Quickly create a Vue template project for SEGMA",
     "main": "index.js",
     "repository": "https://github.com/LucasGoodman/segma_vue_cli",
