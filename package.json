@@ -5,7 +5,7 @@
     "main": "index.js",
     "repository": "https://github.com/LucasGoodman/segma_vue_cli",
     "bin": {
-        "segma-test": "./index.js"
+        "segma": "./index.js"
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
